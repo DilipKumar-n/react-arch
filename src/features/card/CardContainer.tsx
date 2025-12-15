@@ -1,10 +1,10 @@
 import useFetch from '../../hooks/useFetch'
-import Banner from './banner';
+import Card from './Card';
 
-export default function BannerContainer() {
+export default function CardContainer() {
     const { data } = useFetch('https://fake-json-api.mock.beeceptor.com/users')
 
     return (
-        <Banner data={data} />
+        <Card data={data} />
     )
 }

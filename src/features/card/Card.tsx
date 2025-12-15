@@ -14,7 +14,7 @@ interface BannerProps {
     }> | null;
 }
 
-export default function Banner({data}: BannerProps) {
+export default function Card({data}: BannerProps) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {data ? data.map((item) => 

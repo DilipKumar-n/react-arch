@@ -1,10 +1,10 @@
-import BannerContainer from '../../features/banner/BannerContainer';
+import CardContainer from '../../features/card/CardContainer';
 import PageContainer from '../../layout/page-container/PageContainer'
 
 export default function Home() {
   return (
     <PageContainer>
-      <BannerContainer />
+      <CardContainer />
     </PageContainer>
   )
 }
