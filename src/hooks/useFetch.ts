@@ -1,24 +1,9 @@
 import { useEffect, useState } from 'react';
-
-interface BannerProps {
-	data: {
-		address?: string;
-		company?: string;
-		country?: string;
-		email?: string;
-		id?: number;
-		name?: string;
-		phone?: string;
-		photo?: string;
-		state?: string;
-		username?: string;
-		zip?: string;
-		message?: string;
-	} | null;
-}
+import type { BannerProps } from '../utils/types';
 
 export default function useFetch(url: string) {
 	const [data, setData] = useState<BannerProps['data']>(null);
+	const [error, setError] = useState<string>('');
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -30,18 +15,16 @@ export default function useFetch(url: string) {
 				const result = await response.json();
 				setData(result);
 			} catch (error: unknown) {
-				const data: BannerProps['data'] = {
-					message:
-						error instanceof Error
-							? error.message
-							: 'An unknown error occurred',
-				};
-				setData(data);
+				if (error instanceof Error) {
+					setError(error.message);
+				} else {
+					setError('An unknown error occurred');
+				}
 			}
 		};
 
 		fetchData();
 	}, [url]);
 
-	return { data };
+	return { data, error };
 }
