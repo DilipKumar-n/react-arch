@@ -6,11 +6,11 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-		"lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
 		"preview": "vite preview",
-		"format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
-		"prepare": "husky install"
+		"format": "prettier --write .",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.18",
@@ -24,6 +24,7 @@
 		"@types/node": "^24.10.1",
 		"@types/react": "^19.2.5",
 		"@types/react-dom": "^19.2.3",
+		"@typescript-eslint/parser": "^8.50.0",
 		"@vitejs/plugin-react": "^5.1.1",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
@@ -40,7 +41,12 @@
 		"vite": "^7.2.4"
 	},
 	"lint-staged": {
-		"*.js": "eslint --cache --fix",
-		"*.--write": "prettier --write"
+		"*.{js,jsx,ts,tsx}": [
+			"npm run lint:fix",
+			"npm run format"
+		],
+		"*.{css,md,json}": [
+			"npm run format"
+		]
 	}
 }
